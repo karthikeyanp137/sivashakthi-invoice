@@ -131,7 +131,8 @@ export default function App() {
     try {
       setSaving(true);
 
-      const res = await fetch("/api/create-invoice", {
+      const apiUrl = import.meta.env.VITE_API_URL || "";
+      const res = await fetch(`${apiUrl}/api/create-invoice`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -145,7 +146,7 @@ export default function App() {
       }
 
       const data = await res.json();
-      const url = data.pdfUrl ? data.pdfUrl : "";
+      const url = data.pdfUrl ? `${apiUrl}${data.pdfUrl}` : "";
 
       setSuccessMessage("Invoice saved and PDF generated successfully.");
       setPdfUrl(url);
