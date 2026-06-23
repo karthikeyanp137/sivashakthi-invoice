@@ -24,9 +24,6 @@ async function generateInvoicePdf(invoiceDoc, outputDir) {
 
   const browser = await puppeteer.launch({
     headless: "new",
-    executablePath:
-      process.env.PUPPETEER_EXECUTABLE_PATH ||
-      (process.platform === "linux" ? "/usr/bin/google-chrome-stable" : puppeteer.executablePath()),
     args: ["--no-sandbox", "--disable-setuid-sandbox"]
   });
   const page = await browser.newPage();
